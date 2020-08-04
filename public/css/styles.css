@@ -1,0 +1,371 @@
+.main-content {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.detail {
+    border: 1px solid black;
+    width: 31%;
+    height: 120px;
+
+}
+
+.background-login{
+    background: rgb(118,152,162);
+    background: linear-gradient(52deg, rgba(118,152,162,1) 16%, rgba(230,218,114,1) 73%);
+}
+
+.detail-content {
+    display: flex;
+    padding-bottom: 10px;
+    margin: 10px;
+
+}
+
+.detail-label {
+    padding-right: 1rem;
+    font-weight: bold;
+    font-size: 48px;
+    color: black;
+    opacity: 42%
+}
+
+.table-information {
+    width: 100%;
+}
+
+.appraisal-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bio {
+    width: 45%;
+    height: 70%;
+    border: 1px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.appraisal-form {
+    width: 50%;
+    height: 70%;
+    border: 1px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bio-image {
+    border-radius: 50%;
+}
+
+.spacer {
+    margin-bottom: 20px;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 24px;
+    padding-left: 10px;
+
+}
+
+.text {
+    padding-left: 10px;
+}
+
+.d-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-wrapper {
+    margin: 90px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 3em;
+    grid-column-gap: 4em;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgrey;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    border-radius: 10px;
+}
+
+.item:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
+    opacity: 0.7;
+}
+
+.item-content {
+    display: flex;
+    color: black;
+    flex-direction: column;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.d-body {
+    /*background: rgb(228,153,84);*/
+    /*background: linear-gradient(16deg, rgba(228,153,84,1) 26%, rgba(230,179,114,1) 72%);*/
+}
+
+.content-text {
+    color: black;
+    opacity: 56%;
+}
+
+.home-link > a{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    margin-right: 20px;
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.admin-header{
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 120px
+
+}
+
+.approval-tables{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tcol{
+    padding: 10px;
+}
+
+.buttons{
+    width: 50%;
+    display: flex;
+    margin: 10px 10px;
+    justify-content: space-between;
+
+
+}
+
+.overall{
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+
+    border-radius: 5px;
+    border-top: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    border-left: 10px solid orange;
+
+}
+
+.overall-content{
+
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 4em;
+}
+
+.card{
+    transition: transform 1.2s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+a{
+    color: black;
+}
+
+.card-header{
+    text-align: center;
+}
+
+.number{
+    font-size: 4em;
+    text-align: center;
+}
+
+.nav-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.span-dash {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.span-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+input{
+    width: 40%;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.comment-box{
+    /*margin-left: 25px;*/
+    margin-top: 10px;
+    width: 50%;
+    border-top:1px solid lightgrey;
+    border-left:10px solid orange;
+    border-bottom: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+.right-links{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bio-info {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 4em;
+    margin: 10px auto;
+}
+
+.bio-info-details{
+    border-left: 10px solid orange;
+    border-top: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    border-radius: 30px;
+}
+
+.bio-content{
+    display: flex;
+    padding: 15px;
+    /*justify-content: space-between;*/
+
+}
+
+.borderless td, .borderless th {
+    border: none;
+    padding: 120px;
+    font-weight: bold;
+
+}
+
+
+.spacing{
+    margin-left: 70px;
+    text-align: left;
+}
+
+.bio-heading{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.bio-content p{*/
+/*    text-align: left;*/
+/*}*/
+
+.error-block{
+    color: red;
+    margin: 10px;
+}
+
+.table{
+    width: 100%;
+}
+
+.table  tr{
+    border-bottom: none;
+}
+
+.personal-info{
+    margin-top: 30px;
+    border-left: 10px solid orange;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.home-images{
+    width: 250px;
+    height: 150px;
+
+
+}
+
+.report{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 4em;
+    margin: 10px auto;
+}
+
+.searching{
+    display: grid;
+    grid-template-columns: 200px 200px;
+}
+
+.locked{
+    margin-top: 250px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
