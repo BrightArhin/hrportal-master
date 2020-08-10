@@ -196,11 +196,7 @@
 
 
 
-<!-- Rank Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rank_id', 'Rank :') !!}
-    {!! Form::select('rank_id', $ranks, null, ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
-</div>
+
 
 <!-- Job Id Field -->
 <div class="form-group col-sm-6">
@@ -214,14 +210,10 @@
     {!! Form::select('qualification_id', $qualifications, null, ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
 </div>
 
-<!-- Role Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('role_id', 'Role:') !!}
-    {!! Form::select('role_id', $roles, null, ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
-</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
     <a href="{{ route('admin.employees.index') }}" class="btn btn-default">Cancel</a>
 </div>

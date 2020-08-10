@@ -172,7 +172,6 @@ class EmployeeController extends AppBaseController
 
         if (empty($employee)) {
             Flash::error('Employee not found');
-
             return redirect(route('admin.employees.index'));
         }
 

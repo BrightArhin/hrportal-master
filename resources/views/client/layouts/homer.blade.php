@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+{{--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">--}}
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>HR PORTAL</title>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
     <link rel="stylesheet"  href={{asset("css/bootstrap.min.css")}} />
+    <link rel="stylesheet"  href={{asset("css/datatables.min.css")}} />
     <link rel="stylesheet" href={{asset("css/light-bootstrap-dashboard.css?v=2.0.0")}}  />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet"  href={{asset("css/demo.css")}} />
@@ -252,7 +253,8 @@
 <script src={{asset('js/jquery.js')}}></script>
 <script src={{asset('js/jquery.table2excel.js')}}></script>
 <script src={{asset('js/jQuery.print.js')}}></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script src={{asset('js/datatables.min.js')}}></script>
+{{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>--}}
 
 
 @if (count($errors) > 0)

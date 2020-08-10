@@ -15,6 +15,10 @@
                     <td style="font-weight: 200">{{Auth::user()->name}}</td>
                 </tr>
                 <tr>
+                    <td style="font-weight: bold ;padding-left: 10px"><i class="nc-icon nc-circle-09"></i> Staff Number</td>
+                    <td style="font-weight: 200">{{Auth::user()->staff_number}}</td>
+                </tr>
+                <tr>
                     <td style="font-weight: bold ;padding-left: 10px"> <i class="nc-icon nc-paper-2"></i> BirthDate:</td>
                     <td style="font-weight: 200">{{ \Carbon\Carbon::parse( Auth::user()->birth_date)->isoFormat('MMMM, DD YYYY')}}</td>
                 </tr>
@@ -43,7 +47,11 @@
 
                     <tr>
                         <td style="font-weight: bold ;padding-left: 10px"><i class="nc-icon nc-paper-2"></i> Date of Last Promotion:</td>
-                        <td style="font-weight: 200">{{ \Carbon\Carbon::parse( Auth::user()->date_last_promotion)->isoFormat('MMMM, DD YYYY')}}</td>
+                        <td style="font-weight: 200">
+                            @if(Auth::user()->date_last_promotion)
+                              {{ \Carbon\Carbon::parse( Auth::user()->date_last_promotion)->isoFormat('MMMM, DD YYYY')}}
+                            @endif
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -54,10 +62,7 @@
                         <td style="font-weight: bold ;padding-left: 10px"><i class="nc-icon nc-badge"></i> Qualification</td>
                         <td style="font-weight: 200">{{Auth::user()->qualification->name}}</td>
                     </tr>
-                    <tr>
-                        <td style="font-weight: bold ;padding-left: 10px"><i class="nc-icon nc-layers-3"></i> Rank</td>
-                        <td style="font-weight: 200">{{Auth::user()->rank->name}}</td>
-                    </tr>
+
                     <tr>
                         <td style="font-weight: bold ;padding-left: 10px"><i class="nc-icon nc-bag"></i> Grade</td>
                         <td style="font-weight: 200">{{Auth::user()->grade->name}}</td>
