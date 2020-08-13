@@ -191,8 +191,14 @@ Route::get('/recommendation_list/{id}', 'CommiteeRecommendationController@recomm
 Route::get('/recommend_appraisal_details/{id}','CommiteeRecommendationController@appraisalDetails')->name('recommend_appraisal_details')->middleware(['auth', 'isHrManager']);
 Route::post('/store_recommendation/{id}','CommiteeRecommendationController@store')->name('store_recommendation')->middleware(['auth', 'isHrManager']);
 Route::post('/getSupervisor', 'EmployeeController@getSupervisor')->middleware('auth');
-
+Route::get('/get_reports', 'SupervisorAppraisalController@getReports')->name('get_reports');
 Route::patch('/password_change', 'EmployeeController@changePassword')->name('change_password')->middleware('auth');
+Route::get('/dept_list', 'HrReportController@showAllDepts')->name('client.dept_list')->middleware(['auth', 'isHrManager']);
+Route::get('/incomplete_dept_list', 'HrReportController@showAllDeptsIncomplete')->name('client.dept_list_incomplete')->middleware(['auth', 'isHrManager']);
+
+Route::get('/dept_reports', 'HrReportController@index')->name('dept_reports')->middleware(['auth', 'isHrManager']);
+Route::get('/department_listing/{id}', 'HrReportController@getCompleteReport')->name('department_listing')->middleware(['auth','isHrManager']);
+Route::get('/incomplete_listing/{id}', 'HrReportController@getInCompleteReport')->name('incomplete_listing')->middleware(['auth','isHrManager']);
 
 Auth::routes();
 
@@ -208,4 +214,10 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function 
     Route::resource('supervisorScores', 'SupervisorScoreController', ["as" => 'admin']);
 });
 
+
+//Route::get('/get', function(){
+//    if(Carbon::now()->month === 8){
+//
+//    }
+//});
 

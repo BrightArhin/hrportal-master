@@ -7,10 +7,12 @@ use App\Models\Comment;
 use App\Models\Department;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 
 class CommiteeRecommendationController extends Controller
 {
+
     public function showdepartments()
     {
         $departments = Department::all();
@@ -40,10 +42,7 @@ class CommiteeRecommendationController extends Controller
                 array_push($appraisals, $appraisal);
             }
         }
-        $links = session()->has('links') ? session('links') : [];
-        $currentLink = request()->path(); // Getting current URI like 'category/books/'
-        array_unshift($links, $currentLink); // Putting it in the beginning of links array
-        session(['links' => $links]); // Saving links array to the session
+
         return view('client.dashboards.recommendation_appraisal_list', compact('appraisals'));
     }
 
@@ -79,5 +78,9 @@ class CommiteeRecommendationController extends Controller
         $appraisal->save();
         return redirect('/committee');
     }
+
+
+
+
 }
 

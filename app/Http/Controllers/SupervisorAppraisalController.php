@@ -199,7 +199,7 @@ class SupervisorAppraisalController extends Controller
     public function searchForReport(Request $request){
 
         global $year;
-        global  $not_found;
+        global $not_found;
         global $i;
         $i =0;
         $year = trim($request->year);
@@ -283,5 +283,9 @@ class SupervisorAppraisalController extends Controller
             }
         }
         return response()->json(['message' => $message]);
+    }
+
+    public function getReports(){
+        return view('client.dashboards.report_list');
     }
 }

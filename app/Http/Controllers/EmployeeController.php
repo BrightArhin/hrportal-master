@@ -74,11 +74,10 @@ class EmployeeController extends AppBaseController
         /** @var Employee $employee */
         $employee = Employee::create([
             'supervisor_id' => $input['supervisor_id'],
-            //TODO add staff number
             'name' => $input['name'],
             'staff_number' => $input['staff_number'],
             'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'password' => $input['password'],
             'birth_date' => $input['birth_date'],
             'date_first_appointment' => $input['date_first_appointment'],
             'date_last_promotion' => $input['date_last_promotion'],

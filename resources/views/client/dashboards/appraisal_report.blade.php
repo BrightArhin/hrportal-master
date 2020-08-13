@@ -74,9 +74,9 @@
                                  }}
                 </td>
                 <td style="color:{{$the_appraisals[$i]->status ==='Completed'? 'blue' : 'red'}} ">{{$the_appraisals[$i]->status ==='Completed'? 'Approved' : 'Disapproved'}}</td>
-                <td id={{"the_highest_".$i}}></td>
-                <td id={{"the_between_".$i}}></td>
-                <td id={{"the_lowest_".$i}}></td>
+                <td style="text-align: center" id={{"the_highest_".$i}}></td>
+                <td style="text-align: center" id={{"the_between_".$i}}></td>
+                <td style="text-align: center" id={{"the_lowest_".$i}}></td>
                 <td>
                     @if(array_key_exists((string)$employee_list[$i]->employee_id, $supComments))
                             {{$supComments[$employee_list[$i]->employee_id]}}
@@ -111,16 +111,15 @@
                         if (avg >= 3.5) {
                             $("#the_highest_"+i).html('&#10004;')
                             $("#the_highest_"+i).css('color','#00bbff')
-                            $("#the_highest_"+i).css('text-align' ,'center')
 
                         } else if (avg >= 2.0 && avg <= 3.4) {
                             $("#the_between_"+i).html('&#10004;')
                             $("#the_between_"+i).css('color', '#00bbff')
-                            $("#the_highest_"+i).css('text-align' ,'center')
+
                         } else {
                             $("#the_lowest_"+i).html('&#10004;')
                             $("#the_lowest_"+i).css('color', '#00bbff')
-                            $("#the_highest_"+i).css('text-align' ,'center')
+
                         }
                     }
                     $("#export").on("click", function () {

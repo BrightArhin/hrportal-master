@@ -77,7 +77,7 @@
                         </li>
 
                         <li>
-                            <a class="nav-link" href="/client/appraised_employees">
+                            <a class="nav-link" href={{route('client.appraised_employees')}}>
                                 <i class="nc-icon nc-chart-pie-36"></i>
                                 <p>Report</p>
                             </a>
@@ -86,16 +86,25 @@
                     @endif
 
                     @if(Auth::user()->job->name === 'Hr Manager')
-                    <li>
-                        <a class="nav-link" href="#" id="the_button">
-                            <i class="nc-icon nc-email-85"></i>
-                            <p>Send Email Alerts</p>
-                        </a>
-                    </li>
+
                         <li>
-                            <a class="nav-link" href="{{route('committee_show')}}" id="the_button">
+                            <a class="nav-link" href="{{route('committee_show')}}" id="">
                                 <i class="nc-icon nc-chat-round"></i>
                                 <p>Recommendation</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="{{route('dept_reports')}}" id="">
+                                <i class="nc-icon nc-chart"></i>
+                                <p>Departmental Reports</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="#" id="the_button">
+                                <i class="nc-icon nc-email-85"></i>
+                                <p>Send Email Alerts</p>
                             </a>
                         </li>
                     @endif
@@ -178,7 +187,7 @@
                         <ul class="navbar-nav ml-auto">
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Account</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

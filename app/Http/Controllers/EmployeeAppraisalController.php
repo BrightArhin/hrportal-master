@@ -27,7 +27,7 @@ class EmployeeAppraisalController extends Controller
         $status ='';
         if(Auth::user()){
             $appraisals = Appraisal::whereEmployeeId(Auth::user()->employee_id)->where('year', Carbon::now()->year)->get();
-            if(count($appraisals) >= 1){
+            if(count($appraisals) >= 1 || Carbon::now()->month > 8){
                 $status = "Appraisal forms Locked. Check again next year";
             }
             $employee = Auth::user()->load('department');

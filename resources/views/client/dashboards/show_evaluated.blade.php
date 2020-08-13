@@ -171,13 +171,13 @@
                 <div class="buttons" >
 
                     <form method="POST"  action={{route('client.emp_appraise.update', ['emp_appraise'=>$supervisor_scores->appraisal_id])}}>
-                        <button  type=submit class="btn btn-success">Approve</button>
+                        <button  type=submit class="btn btn-success">Fair</button>
                         @csrf
                         {{ method_field('PUT') }}
                     </form>
 
                     <button onclick="toggleCommentBox()"  type=submit class="btn btn-danger ">
-                        Disapprove
+                        Unfair
                     </button>
                 </div>
 

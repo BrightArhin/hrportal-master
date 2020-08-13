@@ -34,7 +34,7 @@
                 let score_3;
                 let score_4;
                 let score_5;
-                let average;
+                let sum;
                 if($('#score_1').val() ===''){
                     score_1 = 0;
                 }else{
@@ -62,15 +62,11 @@
                 }
 
 
-                average = (score_1 + score_2 + score_3 + score_4 + score_5)/5
+                sum = (score_1 + score_2 + score_3 + score_4 + score_5)
 
-                if(average > 3.5){
-                    message = `Average so far is ${average} `
-                }else if(average >=2.0 && average <= 3.4) {
-                    message = `Average so far is ${average} `
-                }else{
-                    message = `Average so far is ${average} `
-                }
+
+                    message = `Sum of entered scores so far is ${sum} `
+
                 if(score_1 >  5.0 || score_2 >  5.0 || score_3 >  5.0 || score_4 >  5.0 || score_5 >  5.0){
                     message ='One of your ratings exceeds 5. Please Check !!!!!'
                     $('#the_alert').addClass('alert alert-danger')

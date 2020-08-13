@@ -11,7 +11,7 @@
 
                                     <div class="alert alert-info alert-dismissible" id="the_alert" style="display: none;">
                                         <a href="#" onclick="$('#the_alert').hide()" class="close"  aria-label="close">&times;</a>
-                                        <p><strong>Success!</strong> Indicates a successful or positive action.</p>
+                                        <p style=" text-align: center"><strong>Success!</strong> Indicates a successful or positive action.</p>
                                     </div>
 
 
