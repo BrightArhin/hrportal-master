@@ -2,6 +2,7 @@
 
 use App\Mail\AppraisalMail;
 use App\Models\Appraisal;
+use App\Models\AppraisalTimeline;
 use App\Models\Department;
 use App\Models\Employee;
 use Carbon\Carbon;
@@ -34,7 +35,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware(['verified']);
-
 
 Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function () {
     Route::resource('employees', 'EmployeeController', ["as" => 'admin']);
@@ -84,6 +84,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function 
 Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function () {
     Route::resource('grades', 'GradeController', ["as" => 'admin']);
 });
+
+//TODO add isHODMIDDLEWARE
+Route::post('/hod_comment/{id}', 'HODCommentsController@store')->name('hod_comment')->middleware(['auth']);
 
 
 Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function () {
@@ -185,7 +188,7 @@ Route::get('/bio_welcome', function(){
 
     return view('client.dashboards.welcomeBio', compact(['supervisor']));
 })->name('bio-welcome')->middleware('auth');
-
+Route::get('/getEmployees', 'EmployeeController@getEmployees')->name('admin.getEmployees')->middleware(['auth','isAdmin']);
 Route::get('/committee', 'CommiteeRecommendationController@showdepartments')->name('committee_show')->middleware(['auth', 'isHrManager']);
 Route::get('/recommendation_list/{id}', 'CommiteeRecommendationController@recommendation_list')->name('recommendation_list')->middleware(['auth','isHrManager']);
 Route::get('/recommend_appraisal_details/{id}','CommiteeRecommendationController@appraisalDetails')->name('recommend_appraisal_details')->middleware(['auth', 'isHrManager']);
@@ -200,6 +203,21 @@ Route::get('/dept_reports', 'HrReportController@index')->name('dept_reports')->m
 Route::get('/department_listing/{id}', 'HrReportController@getCompleteReport')->name('department_listing')->middleware(['auth','isHrManager']);
 Route::get('/incomplete_listing/{id}', 'HrReportController@getInCompleteReport')->name('incomplete_listing')->middleware(['auth','isHrManager']);
 
+Route::get('/sum_dept_list', 'YearlyReportController@showAllDepts')->name('sum_dept_list')->middleware(['auth', 'isHrManager']);
+Route::get('/sum_listing/{id}', 'YearlyReportController@getCompleteReport')->name('sum_listing')->middleware(['auth','isHrManager']);
+
+Route::get('/intro', function(){
+    return view('client.dashboards.intro');
+})->middleware('auth')->name('intro');
+
+//TODO add isHOD middleware
+Route::get('/hod_comment_appraisal_details/{id}','HODCommentsController@empAppraisalDetails')->name('hod_comment_appraisal_details')->middleware(['auth', 'isHOD']);
+Route::get('/hod_comments_list/', 'HODCommentsController@hod_comments_list')->name('hod_comments_list')->middleware(['auth', 'isHOD']);
+Route::get('/hod', 'HODCommentsController@displayDepartments')->name('hod')->middleware(['auth', 'isHOD']);
+
+Route::post('/changeRating', 'SupervisorAppraisalController@changeRating')->middleware('auth');
+Route::post('/updateAverageCount', 'SupervisorAppraisalController@updateAverageCount')->middleware('auth');
+Route::post('/change_date', 'AppraisalTimeLineController@changeDate')->name('change_date')->middleware(['auth','isHrManager']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -215,9 +233,4 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'isAdmin']], function 
 });
 
 
-//Route::get('/get', function(){
-//    if(Carbon::now()->month === 8){
-//
-//    }
-//});
 

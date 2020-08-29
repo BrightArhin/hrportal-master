@@ -33,6 +33,8 @@ class Appraisal extends Model
         'year',
         'status',
         'recommended',
+        'promotion_status',
+        'hod_commented',
         'employee_id',
         'supervisor_id'
     ];

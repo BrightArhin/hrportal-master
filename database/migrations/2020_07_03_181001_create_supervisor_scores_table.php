@@ -17,11 +17,11 @@ class CreateSupervisorScoresTable extends Migration
         Schema::create('supervisor_scores', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('appraisal_id')->unsigned()->nullable();
-            $table->decimal('score_1');
-            $table->decimal('score_2');
-            $table->decimal('score_3');
-            $table->decimal('score_4');
-            $table->decimal('score_5');
+            $table->decimal('score_1')->nullable();
+            $table->decimal('score_2')->nullable();
+            $table->decimal('score_3')->nullable();
+            $table->decimal('score_4')->nullable();
+            $table->decimal('score_5')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('appraisal_id')->references('id')->on('appraisals');

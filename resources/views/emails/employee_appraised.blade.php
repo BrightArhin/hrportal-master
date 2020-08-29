@@ -3,11 +3,10 @@
 The following Employees have completed their appraisal
 
 @foreach($employees as $employee)
-    *{{$employee->full_name}}
+    *{{$employee->name}}
 @endforeach
 
-@component('mail::button', ['url' => ''])
-{{--    todo add official URL To the server--}}
+@component('mail::button', ['url' => 'http://hrportal.local'])
 Appraise Employees
 @endcomponent
 

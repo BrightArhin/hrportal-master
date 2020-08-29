@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Events\AppraisalCompleteEvent;
 use App\Events\EmployeeAppraised;
+use App\Events\EmployeeApproved;
 use App\Events\PendingAppraisals;
 use App\Models\Appraisal;
+use App\Models\AppraisalTimeline;
 use App\Models\Employee;
 use App\Models\EmployeeComment;
 use Carbon\Carbon;
@@ -27,7 +29,8 @@ class EmployeeAppraisalController extends Controller
         $status ='';
         if(Auth::user()){
             $appraisals = Appraisal::whereEmployeeId(Auth::user()->employee_id)->where('year', Carbon::now()->year)->get();
-            if(count($appraisals) >= 1 || Carbon::now()->month > 8){
+            $timeline = AppraisalTimeline::latest()->first();
+            if(count($appraisals) >= 1 || (Carbon::now()->month > $timeline->end_month || Carbon::now()->month < $timeline->start_month )){
                 $status = "Appraisal forms Locked. Check again next year";
             }
             $employee = Auth::user()->load('department');
@@ -81,6 +84,7 @@ class EmployeeAppraisalController extends Controller
     {
 
         $appraisal = Appraisal::whereId($emp_appraise)->with('supervisorscores')->first() ;
+        $sup_rating = $appraisal->sup_rating;
          $supervisor_scores = $appraisal->supervisorscores()->first();
          $sumScores = $supervisor_scores->score_1+$supervisor_scores->score_2+
                       $supervisor_scores->score_4+$supervisor_scores->score_4+
@@ -94,7 +98,7 @@ class EmployeeAppraisalController extends Controller
             }
         });
 
-         return view('client.dashboards.show_evaluated', compact(['supervisor_scores', 'employee_scores', 'sumScores', 'avg', 'sup_comment']));
+         return view('client.dashboards.show_evaluated', compact(['supervisor_scores', 'employee_scores', 'sumScores', 'avg', 'sup_comment', 'sup_rating']));
     }
 
 
@@ -126,11 +130,9 @@ class EmployeeAppraisalController extends Controller
     public function update(Request $request, $emp_appraise)
     {
             $appraisal = Appraisal::find($emp_appraise);
-//            $appraisal->status = 'Completed';
-//
-//            $appraisal->save();
+            $employee = Employee::where('employee_id', $appraisal->supervisor_id)->first();
              AppraisalCompleteEvent::dispatch($appraisal);
-
+             EmployeeApproved::dispatch($employee);
 
             return redirect('/home');
     }
@@ -184,6 +186,7 @@ class EmployeeAppraisalController extends Controller
 
     public function appraisalDetails($id){
         $appraisal = Appraisal::whereId($id)->first();
+        $sup_rating = $appraisal->sup_rating;
         $appraisal->load('employeescores', 'supervisorscores', 'comment.employee_comment', 'comment.supervisor_comment');
         $employee_scores = $appraisal->employeescores;
         $supervisor_scores = $appraisal->supervisorscores;
@@ -203,7 +206,7 @@ class EmployeeAppraisalController extends Controller
         });
 
         return view('client.dashboards.disapproved_details', compact(['employee_scores','supervisor_scores',
-            'sumScores', 'avg', 'emp_comment', 'sup_comment']));
+            'sumScores', 'avg', 'emp_comment', 'sup_comment', 'sup_rating']));
     }
 
     public function pendingDetails($id){

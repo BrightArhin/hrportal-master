@@ -3,13 +3,13 @@
         <thead>
         <tr>
             <th>Employee Id</th>
-            <th>Supervisor Id</th>
             <th>Staff Number</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
             <th>Birth Date</th>
             <th>Department</th>
+            <th>Supervisor</th>
             <th>Grade</th>
             <th>Location</th>
             <th>Qualification</th>
@@ -19,7 +19,8 @@
             <th>Status</th>
             <th>isAdmin</th>
             <th>isSupervisor</th>
-            <th >Action</th>
+            <th>isHOD</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -27,8 +28,10 @@
         @foreach($employees as $employee)
             <tr>
                 <td>{{ $employee->employee_id }}</td>
-                <td>{{ $employee->supervisor_id }}</td>
-                <td>{{ $employee->staff_number }}</td>
+
+                <td>
+                    <a href="{{ route('admin.employees.edit', [$employee->employee_id]) }}">{{ $employee->staff_number }}</a>
+                </td>
                 <td>{{ $employee->name }}</td>
                 <td>{{ $employee->email }}</td>
                 <td>{{ $employee->password }}</td>
@@ -37,6 +40,10 @@
                         {{ $employee->department->name }}
                     @else
                         {{''}}
+                    @endif
+                </td>
+                <td>@if($employee->supervisor)
+                        {{ $employee->supervisor->name }}
                     @endif
                 </td>
                 <td>@if($employee->grade)
@@ -72,6 +79,7 @@
                 <td>{{ $employee->status }}</td>
                 <td>{{ $employee->isAdmin }}</td>
                 <td>{{ $employee->isSupervisor}}</td>
+                <td>{{ $employee->isHOD}}</td>
                 <td>
                     {!! Form::open(['route' => ['admin.employees.destroy', $employee->employee_id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -11,7 +11,7 @@
 
         @if ($appraisal)
             @if ($appraisal->status == 'Completed' || $appraisal->status == 'Disapproved')
-                <a href='/bio_welcome'>
+                <a href='/intro'>
                     <div class="card">
                         <div class="card-header">
                             Self Appraisal
@@ -25,7 +25,7 @@
                 </a>
             @endif
         @else
-            <a href='/bio_welcome'>
+            <a href='/intro'>
                 <div class="card">
                     <div class="card-header">
                         Self Appraisal
@@ -106,5 +106,5 @@
 
 
     </div>
-  
+
 @endsection

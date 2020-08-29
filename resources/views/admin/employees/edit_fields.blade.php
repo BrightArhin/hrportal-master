@@ -5,7 +5,7 @@
     {!! Form::text('staff_number', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- First Name Field -->
+<!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -21,7 +21,7 @@
 <!-- Password Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('password', 'Password:') !!}
-    {!! Form::password('password', ['class' => 'form-control']) !!}
+    {!! Form::text('password', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Birth Date Field -->
@@ -81,8 +81,13 @@
 
 <!-- isSupervisor Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('isSupervisor', 'isSupervisor:') !!}
+    {!! Form::label('isSupervisor', 'Make Supervisor:') !!}
     {!! Form::select('isSupervisor', [0 => 'No', 1 => 'Yes'], null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('isHOD', 'Make HOD:') !!}
+    {!! Form::select('isHOD', [0 => 'No', 1 => 'Yes'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- isAdmin Field -->

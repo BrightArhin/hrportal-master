@@ -16,31 +16,41 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>{{$employee_scores->kpi_1}}</td>
-                        <td style="color: lime">{{$employee_scores->score_1}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_1}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{$employee_scores->kpi_2}}</td>
-                        <td style="color: lime">{{$employee_scores->score_2}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_2}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{$employee_scores->kpi_3}}</td>
-                        <td style="color: lime">{{$employee_scores->score_3}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_3}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{$employee_scores->kpi_4}}</td>
-                        <td style="color: lime">{{$employee_scores->score_4}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_4}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{$employee_scores->kpi_5}}</td>
-                        <td style="color: lime">{{$employee_scores->score_5}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_5}}</td>
-                    </tr>
+                    @if($employee_scores->score_1)
+                        <tr>
+                            <td>{{$employee_scores->kpi_1}}</td>
+                            <td style="color: lime">{{$employee_scores->score_1}}</td>
+                            <td style="color: red" id="score_1">{{$supervisor_scores->score_1}}</td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_2)
+                        <tr>
+                            <td>{{$employee_scores->kpi_2}}</td>
+                            <td style="color: lime">{{$employee_scores->score_2}}</td>
+                            <td style="color: red" id="score_2">{{$supervisor_scores->score_2}}</td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_3)
+                        <tr>
+                            <td>{{$employee_scores->kpi_3}}</td>
+                            <td style="color: lime">{{$employee_scores->score_3}}</td>
+                            <td style="color: red" id="score_3">{{$supervisor_scores->score_3}}</td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_4)
+                        <tr>
+                            <td>{{$employee_scores->kpi_4}}</td>
+                            <td style="color: lime">{{$employee_scores->score_4}}</td>
+                            <td style="color: red" id="score_4">{{$supervisor_scores->score_4}}</td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_5)
+                        <tr>
+                            <td>{{$employee_scores->kpi_5}}</td>
+                            <td style="color: lime">{{$employee_scores->score_5}}</td>
+                            <td style="color: red" id="score_5">{{$supervisor_scores->score_5}}</td>
+                        </tr>
+                     @endif
 
                     </tbody>
                 </table>
@@ -52,21 +62,21 @@
             <div class="overall">
                 <div class="overall-content">
                     <h5>Sum Total Rating</h5>
-                    <span>{{$sumScores}}</span>
+                    <span id="sum"></span>
                 </div>
                 <div class="overall-content">
                     <h5>Number of Key Result Areas(KRA)</h5>
-                    <span>5</span>
+                    <span id="count"></span>
                 </div>
                 <div class="overall-content">
                     <h5>Total Average Score(Total Rating/No.KRAs)</h5>
-                    <span style="color: red">{{$avg}}</span>
+                    <span style="color: red" id="avg">{{$avg}}</span>
                 </div>
             </div>
 
             <h4 style="margin-left: 10px;  margin-top: 30px">RECOMMENDATION BY SUPERVISOR</h4>
-            @switch($avg)
-                @case ($avg  >= 3.5)
+            @switch($sup_rating)
+                @case ('DOUBLE INCREMENT')
                 <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                     <tbody>
                     <tr>
@@ -87,7 +97,7 @@
                     </tbody>
                 </table>
                 @break
-                @case ($avg >= 2.0 && $avg <= 3.4)
+                @case ('NORMAL INCREMENT')
                 <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                     <tbody>
                     <tr>
@@ -108,7 +118,7 @@
                     </tbody>
                 </table>
                 @break
-                @case ($avg < 2.0)
+                @case ('NO INCREMENT')
                 <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                     <tbody>
                     <tr>
@@ -190,12 +200,37 @@
                         $.print('#printable')
                     })
 
+                    let sum=0
+                    let count =0
+                    let average ;
+                    if($('#score_1').length){
+                        sum += parseInt($('#score_1').text())
+                        count++
+                    }
+                    if($('#score_2').length){
+                        sum += parseInt($('#score_2').text())
+                        count++
+                    }
+                    if($('#score_3').length){
+                        sum += parseInt($('#score_3').text())
+                        count++
+                    }
+                    if($('#score_4').length){
+                        sum += parseInt($('#score_4').text())
+                        count++
+                    }
+                    if($('#score_5').length){
+                        sum += parseInt($('#score_5').text())
+                        count++
+                    }
+                    average = sum/count
+                    average = parseFloat(average.toFixed(1))
+                    $("#sum").text(sum)
+                    $("#count").text(count)
+                    $("#avg").text(average)
                 })
             </script>
         @endpush
-
-
-
 
 @endsection
 

@@ -17,32 +17,41 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if($employee_scores->kpi_1)
                     <tr>
                         <td>{{$employee_scores->kpi_1}}</td>
                         <td>{{$employee_scores->score_1}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_1}}</td>
+                        <td style="color: red" id="score_1">{{$supervisor_scores->score_1}}</td>
                     </tr>
+                    @endif
+                    @if($employee_scores->kpi_2)
                     <tr>
                         <td>{{$employee_scores->kpi_2}}</td>
                         <td>{{$employee_scores->score_2}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_2}}</td>
+                        <td style="color: red" id="score_2">{{$supervisor_scores->score_2}}</td>
                     </tr>
+                    @endif
+                    @if($employee_scores->kpi_3)
                     <tr>
                         <td>{{$employee_scores->kpi_3}}</td>
                         <td>{{$employee_scores->score_3}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_3}}</td>
+                        <td style="color: red" id="score_3">{{$supervisor_scores->score_3}}</td>
                     </tr>
+                    @endif
+                    @if($employee_scores->kpi_4)
                     <tr>
                         <td>{{$employee_scores->kpi_4}}</td>
                         <td>{{$employee_scores->score_4}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_4}}</td>
+                        <td style="color: red" id="score_4">{{$supervisor_scores->score_4}}</td>
                     </tr>
+                    @endif
+                    @if($employee_scores->kpi_5)
                     <tr>
                         <td>{{$employee_scores->kpi_5}}</td>
                         <td>{{$employee_scores->score_5}}</td>
-                        <td style="color: red">{{$supervisor_scores->score_5}}</td>
+                        <td style="color: red" id="score_5">{{$supervisor_scores->score_5}}</td>
                     </tr>
-
+                    @endif
                     </tbody>
                 </table>
 
@@ -51,43 +60,44 @@
                 <div class="overall">
                     <div class="overall-content">
                         <h5>Sum Total Rating</h5>
-                        <span>{{$sumScores}}</span>
+                        <span id="sum"></span>
                     </div>
                     <div class="overall-content">
                         <h5>Number of Key Result Areas(KRA)</h5>
-                        <span>5</span>
+                        <span id="count"></span>
                     </div>
                     <div class="overall-content">
                         <h5>Total Average Score(Total Rating/No.KRAs)</h5>
-                        <span style="color: red">{{$avg}}</span>
+                        <span style="color: red" id="avg"></span>
                     </div>
                 </div>
 
                 <h4 style="margin-left:10px; margin-top: 30px">RECOMMENDATION BY SUPERVISOR</h4>
-                @switch($avg)
-                    @case ($avg  >= 3.5)
-                        <table class="table-bordered" style="width: 50%; margin-left: 10px; margin-top: 10px">
-                            <tbody>
-                            <tr>
-                                <td class="tcol">DOUBLE INCREMENT</td>
-                                <td class="tcol">3.5 TO 4.4</td>
-                                <td class="tcol" style="color: #00bbff">&#10004;</td>
-                            </tr>
-                            <tr>
-                                <td class="tcol">NORMAL INCREMENT</td>
-                                <td class="tcol">2.0 TO 3.4</td>
-                                <td class="tcol"></td>
-                            </tr>
-                            <tr>
-                                <td class="tcol">NO INCREMENT</td>
-                                <td class="tcol">BELOW 2.0</td>
-                                <td class="tcol"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        @break
-                    @case ($avg >= 2.0 && $avg <= 3.4)
-                    <table class="table-bordered" style="width: 50%; margin-left: 10px; margin-top: 10px">
+
+                @switch($sup_rating)
+                    @case ('DOUBLE INCREMENT')
+                    <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
+                        <tbody>
+                        <tr>
+                            <td class="tcol">DOUBLE INCREMENT</td>
+                            <td class="tcol">3.5 TO 4.4</td>
+                            <td class="tcol" style="color: #00bbff">&#10004;</td>
+                        </tr>
+                        <tr>
+                            <td class="tcol">NORMAL INCREMENT</td>
+                            <td class="tcol">2.0 TO 3.4</td>
+                            <td class="tcol"></td>
+                        </tr>
+                        <tr>
+                            <td class="tcol">NO INCREMENT</td>
+                            <td class="tcol">BELOW 2.0</td>
+                            <td class="tcol"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    @break
+                    @case ('NORMAL INCREMENT')
+                    <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                         <tbody>
                         <tr>
                             <td class="tcol">DOUBLE INCREMENT</td>
@@ -107,8 +117,8 @@
                         </tbody>
                     </table>
                     @break
-                    @case ($avg < 2.0)
-                    <table class="table-bordered" style="width: 50%; margin-left: 10px; margin-top: 10px">
+                    @case ('NO INCREMENT')
+                    <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                         <tbody>
                         <tr>
                             <td class="tcol">DOUBLE INCREMENT</td>
@@ -130,22 +140,22 @@
                     @break
                     @default
 
-                    <table class="table-bordered" style="width: 50%; margin-left: 10px; margin-top: 10px">
+                    <table class="table-bordered" style="width: 50%; margin-top: 10px; margin-left: 10px">
                         <tbody>
                         <tr>
                             <td>DOUBLE INCREMENT</td>
                             <td>3.5 TO 4.4</td>
-                            <td></td>
+                            <td class="tcol"></td>
                         </tr>
                         <tr>
                             <td>NORMAL INCREMENT</td>
                             <td>2.0 TO 3.4</td>
-                            <td></td>
+                            <td class="tcol"></td>
                         </tr>
                         <tr>
                             <td>NO INCREMENT</td>
                             <td>BELOW 2.0</td>
-                            <td></td>
+                            <td class="tcol"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -153,6 +163,7 @@
 
 
                 @endswitch
+
 
                 <p style="margin: 20px 10px">(<b>NOTE : </b>Above 4.5 - One may be recommended for promotion depending on availability of Vacancies)</p>
 
@@ -212,6 +223,43 @@
                 }
             }
         </script>
+
+       @push('scripts')
+           <script>
+               $(document).ready(()=>{
+                   let sum=0
+                   let count =0
+                   let average ;
+                   if($('#score_1').length){
+                        sum += parseInt($('#score_1').text())
+                       count++
+                   }
+                   if($('#score_2').length){
+                       sum += parseInt($('#score_2').text())
+                       count++
+                   }
+                   if($('#score_3').length){
+                       sum += parseInt($('#score_3').text())
+                       count++
+                   }
+                   if($('#score_4').length){
+                       sum += parseInt($('#score_4').text())
+                       count++
+                   }
+                   if($('#score_5').length){
+                       sum += parseInt($('#score_5').text())
+                       count++
+                   }
+                   average = sum/count
+                   average = parseFloat(average.toFixed(1))
+                   $("#sum").text(sum)
+                   $("#count").text(count)
+                   $("#avg").text(average)
+
+               })
+           </script>
+
+        @endpush
 
 
 

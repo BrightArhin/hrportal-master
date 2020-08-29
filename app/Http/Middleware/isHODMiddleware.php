@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class isHrManager
+class isHODMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class isHrManager
     public function handle($request, Closure $next)
     {
         if(Auth::user()){
-            if(strtoupper(Auth::user()->job->name) !== strtoupper('DEP. H. R. MANAGER') && strtoupper(Auth::user()->job->name) !== strtoupper('Hr Manager') ){
-                return redirect()->back();
+            if(Auth::user()->isHOD !== 1){
+                return redirect('/home');
             }
         }
         return $next($request);

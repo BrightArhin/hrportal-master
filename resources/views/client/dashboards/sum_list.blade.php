@@ -2,7 +2,7 @@
 
 @section('content')
 
-<table class="table table-borderless">
+<table id="sum_dept_list" class="table table-borderless">
     <thead>
     <tr>
         <th>Department</th>
@@ -13,7 +13,7 @@
     @foreach($departments as $department )
         <tr>
             <td>{{strtoupper($department->name)}}</td>
-            <td><a href="{{route('department_listing',['id'=>$department->id])}}"><button class="btn btn-info">View</button></a></td>
+            <td><a href="{{route('sum_listing',['id'=>$department->id])}}"><button class="btn btn-info">View</button></a></td>
         </tr>
     @endforeach
     </tbody>

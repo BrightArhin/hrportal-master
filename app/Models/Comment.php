@@ -70,4 +70,8 @@ class Comment extends Model
     public function commitee_recommendation(){
         return $this->hasOne(CommitteeRecommendation::class);
     }
+
+    public function h_o_d_comment(){
+        return $this->hasOne(HODComments::class);
+    }
 }

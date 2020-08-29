@@ -23,7 +23,7 @@
                 <td style="width:200px; font-weight: bold">NAME</td>
                 <td style="width:200px">{{strtoupper(Auth::user()->name)}}</td>
                 <td style="width:200px; font-weight: bold">DATE OF BIRTH</td>
-                <td style="width:200px">{{ strtoupper(\Carbon\Carbon::parse( Auth::user()->birth_date)->isoFormat('MMMM, D YYYY'))}}</td>
+                <td style="width:200px">{{ strtoupper(\Carbon\Carbon::parse( Auth::user()->birth_date)->isoFormat('MMMM D, YYYY'))}}</td>
                 <td style="font-weight:bold; text-align: center">AGE</td>
                 <td>{{\Carbon\Carbon::parse(Auth::user()->birth_date)->diff(\Carbon\Carbon::now())->format('%y')}}</td>
             </tr>
@@ -53,11 +53,11 @@
 
             <tr>
                 <td style="width:200px; font-weight: bold">DATE OF FIRST APPOINTMENT</td>
-                <td style="width:200px">{{strtoupper (\Carbon\Carbon::parse( Auth::user()->date_first_appointment)->isoFormat('MMMM, DD YYYY'))}}</td>
+                <td style="width:200px">{{strtoupper (\Carbon\Carbon::parse( Auth::user()->date_first_appointment)->isoFormat('MMMM DD, YYYY'))}}</td>
                 <td style="width:200px; font-weight: bold">DATE OF LAST PROMOTION</td>
                 <td style="width:200px">
                     @if(Auth::user()->date_last_promotion)
-                    {{strtoupper (\Carbon\Carbon::parse( Auth::user()->date_last_promotion)->isoFormat('MMMM, DD YYYY'))}}
+                    {{strtoupper (\Carbon\Carbon::parse( Auth::user()->date_last_promotion)->isoFormat('MMMM DD, YYYY'))}}
                     @endif
                 </td>
             </tr>
@@ -90,7 +90,7 @@
             <tr>
                 <td style="width:200px; font-weight: bold">DATE</td>
                 <td style="width:200px">
-                    {{strtoupper(\Carbon\Carbon::now()->isoFormat('MMMM, DD YYYY'))}}
+                    {{strtoupper(\Carbon\Carbon::now()->isoFormat('MMMM DD, YYYY'))}}
                 </td>
             </tr>
 
@@ -116,8 +116,9 @@
         </ol>
     </div>
 
-    <div class="container-fluid">
-        <a href="client/emp_appraise"><button  class="btn btn-success" style="margin-left: 90%; padding: 2px 30px ">Next &#10141;</button></a>
+    <div style="display: flex; justify-content: space-between">
+        <a href="/intro"><button  class="btn btn-warning" >Back </button></a>
+        <a href="client/emp_appraise"><button  class="btn btn-success" >Next &#10141;</button></a>
     </div>
 @endsection
 

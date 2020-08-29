@@ -34,8 +34,9 @@ class CreateEmployeesTable extends Migration
             $table->integer('rank_id')->unsigned()->nullable();
             $table->integer('job_id')->unsigned()->nullable();
             $table->integer('role_id')->unsigned()->nullable();
-            $table->enum('isAdmin', [1,0]);
-            $table->enum('isSupervisor', [1,0]);
+            $table->enum('isAdmin', [1,0])->default(0);
+            $table->enum('isSupervisor', [1,0])->default(0);
+            $table->enum('isHOD', [1,0])->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('supervisor_id')->references('employee_id')->on('employees')->onDelete('set null');

@@ -30,7 +30,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\YearlyAppraisal'=>[
             'App\Listener\SendReminder'
+        ],
+        'App\Events\EmployeeApproved'=>[
+            'App\Listener\SendApprovedEmail'
         ]
+
 
     ];
 

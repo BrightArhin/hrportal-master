@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class EmployeeComment extends Model
+class HODComments extends Model
 {
-    //
-
     use SoftDeletes;
 
-    public $table = 'employee_comments';
+    public $table = 'h_o_d_comments';
 
     public $fillable = [
         'comment_id',

@@ -156,7 +156,14 @@
 }
 
 .tcol{
-    padding: 10px;
+    padding: 5px 30px;
+    cursor: pointer;
+}
+
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
 }
 
 .buttons{

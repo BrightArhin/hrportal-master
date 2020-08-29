@@ -1,10 +1,9 @@
 @component('mail::message')
-# Introduction
+# Review
 
 Your supervisor has finished your appraisal. Please Review to Approve or Disapprove
 
-@component('mail::button', ['url' => ''])
-    {{--    todo add official URL To the server--}}
+@component('mail::button', ['url' => 'http://hrportal.local'])
    Visit HR Portal
 @endcomponent
 

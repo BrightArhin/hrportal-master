@@ -13,7 +13,7 @@
     @foreach($departments as $department )
         <tr>
             <td>{{strtoupper($department->name)}}</td>
-            <td><a href="{{route('department_listing',['id'=>$department->id])}}"><button class="btn btn-info">View</button></a></td>
+            <td><a href="{{route('hod_comments_list',['id'=>$department->id])}}"><button class="btn btn-info">View</button></a></td>
         </tr>
     @endforeach
     </tbody>

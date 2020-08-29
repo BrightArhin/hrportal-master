@@ -171,6 +171,7 @@ class SupervisorAppraisalController extends Controller
         }
         $supComments = array();
         $commitee_recommendation = array();
+        $hod_comments = array();
         foreach ($the_appraisals as $appraisal){
             $comments = $appraisal->comment()->get();
             foreach ($comments as $comment){
@@ -190,10 +191,17 @@ class SupervisorAppraisalController extends Controller
                         $commitee_recommendation[$employee->employee_id] = $recommendation->recommendation;
                     }
                 }
+
+                if($comment->h_o_d_comment){
+                    $hd_comment = $comment->h_o_d_comment()->first();
+                    if(!isset($hod_comments[$employee->employee_id])){
+                        $hod_comments[$employee->employee_id] = $hd_comment->message;
+                    }
+                }
             }
         }
 
-       return view('client.dashboards.appraisal_report',compact(['employee_list', 'supComments' ,'the_appraisals', 'i', 'commitee_recommendation']));
+       return view('client.dashboards.appraisal_report',compact(['employee_list', 'supComments' ,'the_appraisals', 'i', 'commitee_recommendation', 'hod_comments']));
     }
 
     public function searchForReport(Request $request){
@@ -287,5 +295,26 @@ class SupervisorAppraisalController extends Controller
 
     public function getReports(){
         return view('client.dashboards.report_list');
+    }
+
+    public function changeRating(Request $request){
+      $appraisal = Appraisal::find($request->id);
+        if($request->sup_rating == null){
+            $appraisal->sup_rating = NULL;
+            $appraisal->save();
+        } else{
+          $appraisal->sup_rating = $request->sup_rating;
+          $appraisal->save();
+      }
+
+      return response()->json(['message'=>$request->sup_rating]);
+    }
+
+    public function updateAverageCount(Request $request){
+        $appraisal = Appraisal::find($request->id);
+        $appraisal->average = $request->average;
+        $appraisal->kpi_count = $request->count;
+        $appraisal->save();
+        return response()->json(['message'=>'Appraisal updated']);
     }
 }

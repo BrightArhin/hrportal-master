@@ -89,8 +89,13 @@
 
 <!-- isSupervisor Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('isSupervisor', 'isSupervisor:') !!}
+    {!! Form::label('isSupervisor', 'Make Supervisor:') !!}
     {!! Form::select('isSupervisor', [0 => 'No', 1 => 'Yes'], null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('isHOD', 'Make HOD:') !!}
+    {!! Form::select('isHOD', [0 => 'No', 1 => 'Yes'], null, ['class' => 'form-control']) !!}
 </div>
 <!-- Location Field -->
 <div class="form-group col-sm-6">
@@ -165,11 +170,6 @@
 
 
 
-<!-- Rank Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rank_id', 'Rank :') !!}
-    {!! Form::select('rank_id', $ranks, '', ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
-</div>
 
 <!-- Job Id Field -->
 <div class="form-group col-sm-6">
@@ -183,11 +183,7 @@
     {!! Form::select('qualification_id', $qualifications, '', ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
 </div>
 
-<!-- Role Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('role_id', 'Role:') !!}
-    {!! Form::select('role_id', $roles, '', ['class' => 'form-control', 'placeholder'=>'Please Select ...']) !!}
-</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

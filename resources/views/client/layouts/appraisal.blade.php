@@ -41,7 +41,7 @@
             </div>
             <ul class="nav" style="background-color: rgba(255,255,255,.15); margin:10px;  border-radius: 10px">
                 <li>
-                    <a class="nav-link" href="dashboard.blade.php">
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash">Name</p>
                             <span class="span-center">-</span>
@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="user.blade.php">
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash">Status</p>
                             <span class="span-center">-</span>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="table.blade.php">
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash">Department</p>
                             <span class="span-center">-</span>
@@ -68,7 +68,37 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="typography.blade.php">
+                    <a class="nav-link" href="#">
+                        <div class="nav-details">
+                            <p class="span-dash">Date of First Appointment</p>
+                            <span class="span-center">-</span>
+                            <span>@if($employee->date_first_appointment)
+                                    {{\Carbon\Carbon::parse( $employee->date_first_appointment)->isoFormat('MMMM DD, YYYY')}}
+
+                                @else
+                                      {{''}}
+                                @endif
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">
+                        <div class="nav-details">
+                            <p class="span-dash">Date of Last Promotion</p>
+                            <span class="span-center">-</span>
+                            <span>@if($employee->date_last_promotion=== null)
+                                    {{\Carbon\Carbon::parse( $employee->date_first_appointment)->isoFormat('MMMM DD, YYYY')}}
+                                @else
+                                    {{\Carbon\Carbon::parse( $employee->date_last_promotion)->isoFormat('MMMM DD, YYYY')}}
+
+                                @endif
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash">Location</p>
                             <span class="span-center ">-</span>
@@ -77,7 +107,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="icons.blade.php">
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash">Qualification</p>
                             <span class="span-center">-</span>
@@ -94,7 +124,7 @@
 
 
                 <li>
-                    <a class="nav-link" href="icons.blade.php">
+                    <a class="nav-link" href="#">
                         <div class="nav-details">
                             <p class="span-dash ">Job:</p>
                             <span class="span-center">-</span>

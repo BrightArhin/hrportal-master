@@ -41,6 +41,91 @@ class EmployeeController extends AppBaseController
             ->with('employees', $employees);
     }
 
+    public function getEmployees(Request $request){
+        ## Read value
+        $draw = $request->get('draw');
+        $start = $request->get("start");
+        $rowperpage = $request->get("length"); // Rows display per page
+
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $search_arr = $request->get('search');
+
+        $columnIndex = $columnIndex_arr[0]['column']; // Column index
+        $columnName = $columnName_arr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+        $searchValue = $search_arr['value']; // Search value
+
+        // Total records
+        $totalRecords = Employee::select('count(*) as allcount')->count();
+        $totalRecordswithFilter = Employee::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
+
+        // Fetch records
+        $records = Employee::orderBy($columnName,$columnSortOrder)
+            ->where('employees.name', 'like', '%' .$searchValue . '%')
+            ->select('employees.*')
+            ->skip($start)
+            ->take($rowperpage)
+            ->get();
+
+        $data_arr = array();
+        $sno = $start+1;
+        foreach($records as $record){
+            $employee_id = $record->employee_id;
+            $supervisor_id = $record->supervisor_id;
+            $name = $record->name;
+            $staff_number = $record->staff_number;
+            $email = $record->email;
+            $password = $record->password;
+            $birth_date = $record->bith_date;
+            $date_first_appointment = $record->date_first_appointment;
+            $date_last_promotion = $record->date_last_promotion;
+            $status = $record->status;
+            $location_id = $record->location->name;
+            $department_id = $record->department->name;
+            $grade_id = $record->grade->name;
+            $job_id = $record->job->name;
+            $isAdmin = $record->isAdmin;
+            $isSupervisor = $record->isSupervisor;
+            $qualification_id = $record->qualification->name;
+
+
+
+            $data_arr[] = array(
+                "id" => $employee_id,
+                "supervisor_id" => $supervisor_id,
+                "name" => $name,
+                "staff_number"=> $staff_number,
+                "email" => $email,
+                "password"=>$password,
+                "birth_date" => $birth_date,
+                "date_first_appointment" => $date_first_appointment,
+                "date_last_promotion" => $date_last_promotion,
+                "status" => $status,
+                "location_id" => $location_id,
+                "department_id"=>$department_id,
+                "grade_id"=>$grade_id,
+                "qualification_id"=>$qualification_id,
+                "job_id" => $job_id,
+                "isAdmin"=> $isAdmin,
+                "isSupervisor"=>$isSupervisor,
+                "action" => ""
+            );
+        }
+
+        $response = array(
+            "draw" => intval($draw),
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordswithFilter,
+            "aaData" => $data_arr
+        );
+
+        echo json_encode($response);
+        exit;
+    }
+
+
     /**
      * Show the form for creating a new Employee.
      *
@@ -84,13 +169,12 @@ class EmployeeController extends AppBaseController
             'status' => $input['status'],
             'isAdmin'=> $input['isAdmin'],
             'isSupervisor'=> $input['isSupervisor'],
+            'isHOD'=>$input['isHOD'],
             'grade_id' => $input['grade_id'],
             'location_id' => $input['location_id'],
             'department_id' => $input['department_id'],
             'qualification_id' => $input['qualification_id'],
-            'rank_id' => $input['rank_id'],
             'job_id' => $input['job_id'],
-            'role_id'=> $input['role_id']
         ]);
 
         if($employee->supervisor_id != null){

@@ -16,31 +16,41 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>{{$employee_scores->kpi_1}}</td>
-                        <td style="color: lime">{{$employee_scores->score_1}}</td>
-                        <td style="color: red"></td>
-                    </tr>
-                    <tr>
-                        <td>{{$employee_scores->kpi_2}}</td>
-                        <td style="color: lime">{{$employee_scores->score_2}}</td>
-                        <td style="color: red"></td>
-                    </tr>
+                    @if($employee_scores->score_1)
+                        <tr>
+                            <td>{{$employee_scores->kpi_1}}</td>
+                            <td style="color: lime">{{$employee_scores->score_1}}</td>
+                            <td style="color: red"></td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_2)
+                        <tr>
+                            <td>{{$employee_scores->kpi_2}}</td>
+                            <td style="color: lime">{{$employee_scores->score_2}}</td>
+                            <td style="color: red"></td>
+                        </tr>
+                    @endif
+                    @if($employee_scores->score_3)
                     <tr>
                         <td>{{$employee_scores->kpi_3}}</td>
                         <td style="color: lime">{{$employee_scores->score_3}}</td>
                         <td style="color: red"></td>
                     </tr>
+                    @endif
+                    @if($employee_scores->score_4)
                     <tr>
                         <td>{{$employee_scores->kpi_4}}</td>
                         <td style="color: lime">{{$employee_scores->score_4}}</td>
                         <td style="color: red"></td>
                     </tr>
+                    @endif
+                    @if($employee_scores->score_5)
                     <tr>
                         <td>{{$employee_scores->kpi_5}}</td>
                         <td style="color: lime">{{$employee_scores->score_5}}</td>
                         <td style="color: red"></td>
                     </tr>
+                     @endif
 
                     </tbody>
                 </table>

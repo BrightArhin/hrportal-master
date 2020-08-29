@@ -11,10 +11,10 @@
     @for($i=1; $i<= 5; $i++)
         <tr>
             <td>
-                {!! Form::text('kpi_'.$i, null, ['class' => 'form-control', 'required' ,'placeholder'=>'Enter your Kpi']) !!}
+                {!! Form::text('kpi_'.$i, null, ['class' => 'form-control' ,'placeholder'=>'Enter your Kpi']) !!}
             </td>
             <td>
-                {!! Form::select('score_'.$i,[1=>"1", 2=>"2",3=>"3",4=>4,5=>"5"], '', ['class' => 'form-control', 'required' ,'placeholder'=>'Please Select', 'id'=>'score_'.$i]) !!}
+                {!! Form::select('score_'.$i,[1=>"1", 2=>"2",3=>"3",4=>4,5=>"5"], '', ['class' => 'form-control' ,'placeholder'=>'Please Select', 'id'=>'score_'.$i]) !!}
             </td>
             <td>
                 {!! Form::number('sup_score_'.$i, null, ['class' => 'form-control', 'disabled' ,'min'=>0, 'max'=>5]) !!}
@@ -63,6 +63,7 @@
 
 
                 sum = (score_1 + score_2 + score_3 + score_4 + score_5)
+
 
 
                     message = `Sum of entered scores so far is ${sum} `
