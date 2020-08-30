@@ -11,10 +11,7 @@
 
                                 </div>
 
-                                <div class="alert alert-danger alert-dismissible" id="the_errors" style="display: none;">
-                                    <a href="#" onclick="$('#the_errors').hide()" class="close"  aria-label="close">&times;</a>
-                                    <p></p>
-                                </div>
+
 
                                 <h3 style=" margin-top: 30px">Overall Rating(After Appraisal Interview)</h3>
 
@@ -33,8 +30,14 @@
                                             <span style="color: red" id="avg"></span>
                                         </div>
                                     </div>
+
+                                    <div class="alert alert-info alert-dismissible" id="the_message" style="display: none;">
+                                        <a href="#" onclick="$('#the_message').hide()" class="close"  aria-label="close">&times;</a>
+                                        <p></p>
+                                    </div>
+
                                     <h3 style=" margin-top: 30px">RECOMMENDATION BY SUPERVISOR</h3>
-                                    <h5 style=" margin-top: 30px; font-weight: bold">Click to tick <span style="color: #00bbff">&#10004;</span> a cell in third column to rate and clear with the <span style="color: red">&#10005;</span> cell in fourth column to clear ticked choice </h5>
+                                    <h5 style=" margin-top: 30px; font-weight: bold">Click to tick <span style="color: #00bbff">&#10004;</span> a cell in third column to rate and clear the choice with  <span style="color: red">&#10005;</span> in any cell in fourth column  </h5>
                                     <table class="table-bordered" style="width: 70%; margin-top: 10px">
                                         <tbody>
                                         <tr>
@@ -71,7 +74,7 @@
                                     @csrf
                                     <div class="form-group col-sm-12">
                                         {!! Form::label('require_training', 'Does he/she require any training? If so, specify the kind of training you recommend') !!}
-                                        {!! Form::textarea('require_training', null, ['class' => 'form-control', 'rows'=>'5']) !!}
+                                        {!! Form::textarea('require_training', null, ['class' => 'form-control', 'rows'=>'5', 'required']) !!}
                                     </div>
 
 
@@ -94,7 +97,7 @@
                 let score_4;
                 let score_5;
                 let average = 0.0;
-
+                let rating;
                 let message= '';
 
 
@@ -132,8 +135,29 @@
                         }
                     }
 
+
+
                     average = (sum)/count
                     average = parseFloat(average.toFixed(1))
+                    if(average > 4.4){
+                        rating = "RECOMMENDED FOR PROMOTION"
+                    }
+                    else if(average >= 3.5 && average <= 4.4){
+                        rating = "DOUBLE INCREMENT"
+                    }else if(average >=2.0 && average <= 3.4){
+                        rating = "NORMAL INCREMENT"
+                    }else if(average < 2.0){
+                        rating = "NORMAL INCREMENT"
+                    }
+                    let check = average > 4.4 ? " the employee is " : " tick "
+
+                    message = `Based on an average of  ${average} ${check} ${rating} or ignore ticking if there is any reservation `
+
+
+                    $("#the_message").fadeIn('fast', ()=>{
+                        $("#the_message > p").text(message)
+                    })
+
                     $('#num').html(count);
                     $('#total').html(sum);
                     $('#avg').html(average);

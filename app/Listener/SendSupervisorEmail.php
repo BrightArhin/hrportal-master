@@ -28,6 +28,11 @@ class SendSupervisorEmail
      */
     public function handle(PendingAppraisals $event)
     {
-        Mail::to($event->employee->email)->send(new EmployeeAppraised());
+        try{
+            Mail::to($event->employee->email)->send(new EmployeeAppraised());
+
+        }catch (\Exception $e){
+
+        }
     }
 }

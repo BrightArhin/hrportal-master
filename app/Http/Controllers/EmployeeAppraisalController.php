@@ -97,6 +97,8 @@ class EmployeeAppraisalController extends Controller
                 return $comment;
             }
         });
+        $sup_comment = $sup_comment->all();
+        $sup_comment = $sup_comment[0];
 
          return view('client.dashboards.show_evaluated', compact(['supervisor_scores', 'employee_scores', 'sumScores', 'avg', 'sup_comment', 'sup_rating']));
     }
@@ -204,6 +206,10 @@ class EmployeeAppraisalController extends Controller
                 return $comment;
             }
         });
+
+        $sup_comment = $sup_comment->all();
+        $sup_comment = $sup_comment[0];
+
 
         return view('client.dashboards.disapproved_details', compact(['employee_scores','supervisor_scores',
             'sumScores', 'avg', 'emp_comment', 'sup_comment', 'sup_rating']));

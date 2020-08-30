@@ -4,7 +4,6 @@ namespace App\Listener;
 
 use App\Events\YearlyAppraisal;
 use App\Mail\YearlyAppraisalAlert;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
@@ -35,7 +34,7 @@ class SendReminder
         try {
 
                Mail::to($event->employee->email)->send(new YearlyAppraisalAlert());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             report($e);
         }
     }

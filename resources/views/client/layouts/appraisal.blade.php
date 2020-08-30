@@ -126,7 +126,7 @@
                 <li>
                     <a class="nav-link" href="#">
                         <div class="nav-details">
-                            <p class="span-dash ">Job:</p>
+                            <p class="span-dash ">Job title:</p>
                             <span class="span-center">-</span>
                             <span class="span-dash ">{{$employee->job->name}}</span>
                         </div>

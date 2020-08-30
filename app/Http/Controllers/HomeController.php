@@ -50,7 +50,8 @@ class HomeController extends Controller
         }
 
         $approved =  count(Auth::user()->load(['appraisals'=> function ($query){
-            $query->whereStatus('Completed');
+            $query->whereStatus('Completed')
+            ->orWhere('status', 'Disapproved');
         }])->appraisals);
 
         $disapproved = count(Auth::user()->load(['appraisals'=> function ($query){

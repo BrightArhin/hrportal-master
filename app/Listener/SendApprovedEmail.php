@@ -28,7 +28,10 @@ class SendApprovedEmail
      */
     public function handle(EmployeeApproved $event)
     {
+        try {
+            Mail::to($event->employee->email)->send(new ApprovalEmail());
+        }catch (\Exception $e){
 
-        Mail::to($event->employee->email)->send(new ApprovalEmail());
+        }
     }
 }

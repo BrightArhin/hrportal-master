@@ -167,17 +167,17 @@
 
             <p style="margin: 20px 10px">(<b>NOTE : </b>Above 4.5 - One may be recommended for promotion depending on availability of Vacancies)</p>
 
-            @foreach($sup_comment as $the_comment)
-                @if($the_comment)
+
+                @if($sup_comment)
                     <h4 style="margin-top: 20px; margin-left: 10px">DEVELOPMENT/TRAINING NEEDS</h4>
                     <div class="comment-box" style="margin-left: 10px">
                         <p><strong>What are his/her development prospects</strong></p>
-                        <p>{{$the_comment->supervisor_comment->development_prospects}}</p>
+                        <p>{{$sup_comment->supervisor_comment->development_prospects}}</p>
                         <p><strong>Does he/she require any training? If so, specify the Kind of training you recommend</strong></>
-                        <p>{{$the_comment->supervisor_comment->require_training}}</p>
+                        <p>{{$sup_comment->supervisor_comment->require_training}}</p>
                     </div>
                 @endif
-            @endforeach
+
 
             @foreach($emp_comment as $the_comment)
                 @if($the_comment)

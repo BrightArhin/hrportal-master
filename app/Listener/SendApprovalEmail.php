@@ -28,6 +28,11 @@ class SendApprovalEmail
      */
     public function handle(EmployeeAppraised $event)
     {
-        Mail::to($event->employee->email)->send(new AppraisalMail());
+        try {
+            Mail::to($event->employee->email)->send(new AppraisalMail());
+        }catch (\Exception $e){
+
+        }
+
     }
 }
